@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,7 +39,7 @@ public class OrderAdapter implements intrOrderReader {
             String[] pars = orderlin.split("#");
             LocalDateTime ordData = LocalDateTime.parse(pars[0], formatter);
             String shopName = pars[1];
-            int wheitKg = Integer.parseInt(pars[2]);
+            BigDecimal wheitKg = new BigDecimal (pars[2]);
             orders.add(new Order(ordData, shopName, wheitKg));
         }
         return orders;
