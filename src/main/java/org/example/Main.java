@@ -26,7 +26,7 @@ public class Main {
         OrderParser orderParsing = new OrderParser();
         try {
             orders = orderParsing.parsing(file);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             System.err.println("Некоректный формат файла" + e.getMessage());
             return;
         }
@@ -37,7 +37,7 @@ public class Main {
             OrderSummary summary = new OrderSummary(output);
             summary.storeOrderLine(discountCalculate);
         } catch (RuntimeException e) {
-            System.err.println("Путь к файлу или сам файл не может быть пустым" + e.getMessage());
+            System.err.println("Файл не найден" + e.getMessage());
             return;
         }
     }
