@@ -2,6 +2,7 @@ package org.example.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 public class Order {
@@ -46,5 +47,17 @@ public class Order {
 
     public void setFinalPrice(BigDecimal finalPrice) {
         this.finalPrice = finalPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(orderData, order.orderData) && Objects.equals(shopName, order.shopName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderData, shopName);
     }
 }
