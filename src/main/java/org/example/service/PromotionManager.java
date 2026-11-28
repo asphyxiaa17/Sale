@@ -3,6 +3,7 @@ package org.example.service;
 
 import org.example.api.DiscountCalculator;
 import org.example.entity.Order;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +16,6 @@ public class PromotionManager implements DiscountCalculator {
     private BigDecimal promoStep;
     private BigDecimal offerPrice;
 
-
     public PromotionManager(List<Order> orders, BigDecimal promoSize, BigDecimal promoStep, BigDecimal offerPrice) {
         this.orders = orders;
         this.promoSize = promoSize;
@@ -24,13 +24,12 @@ public class PromotionManager implements DiscountCalculator {
     }
 
     @Override
-
     public List<Order> discount() {
         List<Order> orderDateDesc = new ArrayList<>(orders);
         Collections.sort(orderDateDesc, Comparator.comparing(Order::getOrderData));
         for (Order order : orderDateDesc) {
             if (promoSize.compareTo(BigDecimal.ZERO) > 0) {
-                BigDecimal localSize = promoSize ;
+                BigDecimal localSize = promoSize;
                 BigDecimal finalPrice = order.getWeightKg().multiply(offerPrice).multiply(localSize);
                 order.setFinalPrice(finalPrice);
                 promoSize = localSize.subtract(promoStep);
