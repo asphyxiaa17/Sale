@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.api.FileCollector;
 import org.example.entity.Order;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -17,14 +18,10 @@ public class OrderSummary implements FileCollector {
     private static final String SEPARATOR = " - ";
 
     public OrderSummary(Path path) {
-        if (path == null) {
-            throw new RuntimeException("Путь к файлу не может быть пустым" + path);
-        }
         this.path = path;
     }
 
     @Override
-
     public void storeOrderLine(List<Order> orderDateDesc) {
         List<String> finalList = new ArrayList<>();
         Map<String, BigDecimal> storeOrders = new HashMap<String, BigDecimal>();
