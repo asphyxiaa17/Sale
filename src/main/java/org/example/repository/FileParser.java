@@ -18,21 +18,19 @@ public class FileParser implements FileReader {
     }
 
     @Override
-
     public List<String> read() {
         List<String> orderStringList = new ArrayList<>();
-            try (InputStream is = getClass().getClassLoader().getResourceAsStream(fileRoad);
-                 BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    orderStringList.add(line);
-                }
-            } catch (IOException e) {
-                throw new RuntimeException ("Не удалось прочитать файл" + fileRoad, e);
-            } catch (NullPointerException e) {
-                throw new RuntimeException ("Не удалось найти файл" + fileRoad, e);
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(fileRoad);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                orderStringList.add(line);
             }
-
+        } catch (IOException e) {
+            throw new RuntimeException("Не удалось прочитать файл" + fileRoad, e);
+        } catch (NullPointerException e) {
+            throw new RuntimeException("Не удалось найти файл" + fileRoad, e);
+        }
         return orderStringList;
     }
 }
